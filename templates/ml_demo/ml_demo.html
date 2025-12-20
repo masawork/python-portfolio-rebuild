@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}ML Demo - ポートフォリオ{% endblock %}
+
+{% block content %}
+<h1 style="font-size: 2rem; margin-bottom: 2rem;">機械学習デモ</h1>
+
+<div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <p style="margin-bottom: 2rem; color: #666;">
+        数値のリストを入力すると、機械学習モデルによる予測結果を表示します。
+    </p>
+
+    <form id="ml-form" style="margin-bottom: 2rem;">
+        <div style="margin-bottom: 1.5rem;">
+            <label for="input-values" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">入力値（カンマ区切り）</label>
+            <input type="text" id="input-values" placeholder="例: 1, 2, 3, 4, 5" required style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
+            <small style="color: #666; display: block; margin-top: 0.25rem;">数値をカンマで区切って入力してください</small>
+        </div>
+
+        <button type="submit" class="btn">予測実行</button>
+    </form>
+
+    <div id="result" style="display: none; padding: 1rem; background: #f0f0f0; border-radius: 4px; margin-top: 2rem;">
+        <h2 style="font-size: 1.3rem; margin-bottom: 1rem;">予測結果</h2>
+        <div id="result-content"></div>
+    </div>
+</div>
+
+<script>
+document.getElementById('ml-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const inputValues = document.getElementById('input-values').value;
+    const values = inputValues.split(',').map(v => parseFloat(v.trim())).filter(v => !isNaN(v));
+
+    if (values.length === 0) {
+        alert('有効な数値を入力してください');
+        return;
+    }
+
+    try {
+        const response = await fetch('/api/ml/predict/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ input: values })
+        });
+
+        const result = await response.json();
+        
+        if (response.ok) {
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('result-content').innerHTML = `
+                <p><strong>入力値:</strong> [${result.input.join(', ')}]</p>
+                <p><strong>予測値:</strong> ${result.prediction}</p>
+                <p><strong>使用モデル:</strong> ${result.model_used}</p>
+            `;
+        } else {
+            alert('エラー: ' + (result.error || '予測に失敗しました'));
+        }
+    } catch (error) {
+        alert('エラー: ' + error.message);
+    }
+});
+</script>
+{% endblock %}
+
+
+

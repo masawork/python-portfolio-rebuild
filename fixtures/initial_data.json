@@ -1,0 +1,125 @@
+[
+  {
+    "model": "portfolio.tag",
+    "pk": 1,
+    "fields": {
+      "name": "Python",
+      "slug": "python"
+    }
+  },
+  {
+    "model": "portfolio.tag",
+    "pk": 2,
+    "fields": {
+      "name": "Django",
+      "slug": "django"
+    }
+  },
+  {
+    "model": "portfolio.tag",
+    "pk": 3,
+    "fields": {
+      "name": "機械学習",
+      "slug": "machine-learning"
+    }
+  },
+  {
+    "model": "portfolio.tag",
+    "pk": 4,
+    "fields": {
+      "name": "React",
+      "slug": "react"
+    }
+  },
+  {
+    "model": "portfolio.project",
+    "pk": 1,
+    "fields": {
+      "title": "Eコマースプラットフォーム",
+      "summary": "DjangoとReactで構築したフルスタックEコマースアプリケーション",
+      "description": "このプロジェクトは、Django REST Frameworkを使用したバックエンドAPIとReactで構築されたフロントエンドからなるEコマースプラットフォームです。ユーザー認証、商品管理、決済機能などを実装しています。",
+      "tech_stack": "Django, React, PostgreSQL, Docker",
+      "github_url": "https://github.com/example/ecommerce",
+      "demo_url": "https://ecommerce-demo.example.com",
+      "is_published": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z",
+      "tags": [1, 2]
+    }
+  },
+  {
+    "model": "portfolio.project",
+    "pk": 2,
+    "fields": {
+      "title": "機械学習予測システム",
+      "summary": "scikit-learnを使用した機械学習予測システム",
+      "description": "データ分析と機械学習モデルを使用して、様々な予測タスクを実行するシステムです。モデルの学習から推論まで、一貫したワークフローを実装しています。",
+      "tech_stack": "Python, scikit-learn, pandas, Flask",
+      "github_url": "https://github.com/example/ml-system",
+      "is_published": true,
+      "created_at": "2024-01-02T00:00:00Z",
+      "updated_at": "2024-01-02T00:00:00Z",
+      "tags": [1, 3]
+    }
+  },
+  {
+    "model": "portfolio.project",
+    "pk": 3,
+    "fields": {
+      "title": "タスク管理アプリ",
+      "summary": "DjangoとVue.jsを使用したタスク管理アプリケーション",
+      "description": "リアルタイムでタスクを管理できるアプリケーションです。ドラッグ&ドロップによる優先順位の変更、タグ付け、検索機能などを実装しています。",
+      "tech_stack": "Django, Vue.js, PostgreSQL, WebSocket",
+      "github_url": "https://github.com/example/task-manager",
+      "demo_url": "https://task-manager-demo.example.com",
+      "is_published": true,
+      "created_at": "2024-01-03T00:00:00Z",
+      "updated_at": "2024-01-03T00:00:00Z",
+      "tags": [2, 4]
+    }
+  },
+  {
+    "model": "blog.blogpost",
+    "pk": 1,
+    "fields": {
+      "title": "Django REST Frameworkの基礎",
+      "slug": "django-rest-framework-basics",
+      "body_markdown": "# Django REST Frameworkの基礎\n\nDjango REST Frameworkは、DjangoでRESTful APIを構築するための強力なツールキットです。\n\n## 主な特徴\n\n- **シリアライザー**: データのシリアライゼーションとバリデーション\n- **ViewSets**: CRUD操作の簡素化\n- **認証・権限**: 柔軟な認証システム\n- **スロットリング**: APIのレート制限\n\n## 使い方\n\n```python\nfrom rest_framework import viewsets\nfrom .models import Project\nfrom .serializers import ProjectSerializer\n\nclass ProjectViewSet(viewsets.ModelViewSet):\n    queryset = Project.objects.all()\n    serializer_class = ProjectSerializer\n```\n\nDjango REST Frameworkを使用することで、効率的にRESTful APIを構築できます。",
+      "summary": "Django REST Frameworkを使用したRESTful APIの構築方法を解説します。",
+      "is_published": true,
+      "created_at": "2024-01-10T00:00:00Z",
+      "updated_at": "2024-01-10T00:00:00Z",
+      "tags": [1, 2]
+    }
+  },
+  {
+    "model": "blog.blogpost",
+    "pk": 2,
+    "fields": {
+      "title": "機械学習モデルのデプロイ",
+      "slug": "ml-model-deployment",
+      "body_markdown": "# 機械学習モデルのデプロイ\n\n機械学習モデルを本番環境にデプロイする方法について解説します。\n\n## デプロイ方法\n\n1. **モデルの保存**: pickleやjoblibを使用\n2. **API化**: FlaskやFastAPIでREST APIを作成\n3. **コンテナ化**: Dockerを使用してコンテナ化\n4. **デプロイ**: AWS、GCP、Azureなどにデプロイ\n\n## 推論の最適化\n\n- バッチ処理による効率化\n- キャッシュの活用\n- モデルの軽量化\n\n機械学習モデルを本番環境で運用する際は、パフォーマンスとスケーラビリティを考慮する必要があります。",
+      "summary": "機械学習モデルを本番環境にデプロイする方法とベストプラクティスを紹介します。",
+      "is_published": true,
+      "created_at": "2024-01-11T00:00:00Z",
+      "updated_at": "2024-01-11T00:00:00Z",
+      "tags": [1, 3]
+    }
+  },
+  {
+    "model": "blog.blogpost",
+    "pk": 3,
+    "fields": {
+      "title": "Dockerを使った開発環境の構築",
+      "slug": "docker-development-environment",
+      "body_markdown": "# Dockerを使った開発環境の構築\n\nDockerを使用することで、一貫した開発環境を構築できます。\n\n## Docker Composeの設定\n\n```yaml\nversion: '3.8'\nservices:\n  db:\n    image: postgres:15\n    environment:\n      POSTGRES_DB: mydb\n      POSTGRES_USER: user\n      POSTGRES_PASSWORD: pass\n  web:\n    build: .\n    command: python manage.py runserver 0.0.0.0:8000\n    volumes:\n      - .:/app\n    ports:\n      - \"8000:8000\"\n```\n\n## メリット\n\n- 環境の一貫性\n- 依存関係の管理\n- 簡単なセットアップ\n\nDockerを使用することで、開発環境の構築が簡単になります。",
+      "summary": "DockerとDocker Composeを使用した開発環境の構築方法を解説します。",
+      "is_published": true,
+      "created_at": "2024-01-12T00:00:00Z",
+      "updated_at": "2024-01-12T00:00:00Z",
+      "tags": [2]
+    }
+  }
+]
+
+

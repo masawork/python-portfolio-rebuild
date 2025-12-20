@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }} - ポートフォリオ{% endblock %}
+
+{% block content %}
+<a href="{% url 'blog_list' %}" style="color: #007bff; text-decoration: none; margin-bottom: 1rem; display: inline-block;">← ブログ一覧に戻る</a>
+
+<article style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <h1 style="font-size: 2rem; margin-bottom: 1rem;">{{ post.title }}</h1>
+
+    {% if post.tags.all %}
+    <div style="margin-bottom: 2rem;">
+        {% for tag in post.tags.all %}
+        <span style="display: inline-block; padding: 0.5rem 1rem; background: #e8f5e9; color: #2e7d32; border-radius: 4px; margin-right: 0.5rem;">{{ tag.name }}</span>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div style="margin-bottom: 2rem; line-height: 1.8;">
+        {{ post.get_body_html|safe }}
+    </div>
+
+    <p style="color: #999; font-size: 0.9rem;">作成日: {{ post.created_at|date:"Y年m月d日" }}</p>
+</article>
+{% endblock %}
+
+
+

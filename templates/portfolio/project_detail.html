@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ project.title }} - ポートフォリオ{% endblock %}
+
+{% block content %}
+<a href="{% url 'project_list' %}" style="color: #007bff; text-decoration: none; margin-bottom: 1rem; display: inline-block;">← プロジェクト一覧に戻る</a>
+
+<article style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <h1 style="font-size: 2rem; margin-bottom: 1rem;">{{ project.title }}</h1>
+    <p style="color: #666; margin-bottom: 2rem;">{{ project.summary }}</p>
+
+    {% if project.description %}
+    <div style="margin-bottom: 2rem;">
+        <h2 style="font-size: 1.3rem; margin-bottom: 0.5rem;">詳細</h2>
+        <p style="white-space: pre-wrap;">{{ project.description }}</p>
+    </div>
+    {% endif %}
+
+    <div style="margin-bottom: 2rem;">
+        <h2 style="font-size: 1.3rem; margin-bottom: 0.5rem;">技術スタック</h2>
+        <div>
+            {% for tech in project.get_tech_stack_list %}
+            <span style="display: inline-block; padding: 0.5rem 1rem; background: #e3f2fd; color: #1976d2; border-radius: 4px; margin-right: 0.5rem; margin-bottom: 0.5rem;">{{ tech }}</span>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% if project.tags.all %}
+    <div style="margin-bottom: 2rem;">
+        <h2 style="font-size: 1.3rem; margin-bottom: 0.5rem;">タグ</h2>
+        <div>
+            {% for tag in project.tags.all %}
+            <span style="display: inline-block; padding: 0.25rem 0.5rem; background: #f0f0f0; color: #333; border-radius: 4px; font-size: 0.85rem; margin-right: 0.5rem;">{{ tag.name }}</span>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <div style="margin-bottom: 2rem;">
+        {% if project.github_url %}
+        <a href="{{ project.github_url }}" target="_blank" class="btn" style="margin-right: 1rem;">GitHub</a>
+        {% endif %}
+        {% if project.demo_url %}
+        <a href="{{ project.demo_url }}" target="_blank" class="btn">デモ</a>
+        {% endif %}
+    </div>
+
+    <p style="color: #999; font-size: 0.9rem;">作成日: {{ project.created_at|date:"Y年m月d日" }}</p>
+</article>
+{% endblock %}
+
+
+

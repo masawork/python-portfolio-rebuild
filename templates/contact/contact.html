@@ -1,29 +1,44 @@
 {% extends 'base.html' %}
 
-{% block title %}お問い合わせ - ポートフォリオ{% endblock %}
+{% block title %}Contact — Sakamoto Portfolio{% endblock %}
 
 {% block content %}
-<h1 style="font-size: 2rem; margin-bottom: 2rem;">お問い合わせ</h1>
+<div style="max-width: 600px;">
+    <div class="section-label">CONTACT</div>
+    <h1>お問い合わせ</h1>
+    <p style="color: var(--text2); margin-bottom: 2rem;">
+        お仕事のご依頼・ご相談など、お気軽にご連絡ください。
+        このフォームは Django REST Framework の POST API に接続しています。
+    </p>
 
-<form method="post" style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-    {% csrf_token %}
-    <div style="margin-bottom: 1.5rem;">
-        <label for="name" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">お名前</label>
-        <input type="text" id="name" name="name" required style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
+    <form method="post" class="card">
+        {% csrf_token %}
+        <div style="margin-bottom: 1.5rem;">
+            <label for="name" style="display: block; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 500;">お名前</label>
+            <input type="text" id="name" name="name" required placeholder="山田 太郎">
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+            <label for="email" style="display: block; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 500;">メールアドレス</label>
+            <input type="text" id="email" name="email" required placeholder="example@email.com">
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+            <label for="message" style="display: block; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 500;">メッセージ</label>
+            <textarea id="message" name="message" required rows="6" placeholder="お問い合わせ内容をご記入ください..." style="resize: vertical;"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">送信する</button>
+    </form>
+
+    <div id="success-msg" style="display: none; margin-top: 1rem; padding: 1rem; background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.3); border-radius: 6px; color: var(--green); font-size: 0.9rem;">
+        お問い合わせを受け付けました。ありがとうございます。
     </div>
 
-    <div style="margin-bottom: 1.5rem;">
-        <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">メールアドレス</label>
-        <input type="email" id="email" name="email" required style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
-    </div>
-
-    <div style="margin-bottom: 1.5rem;">
-        <label for="message" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">メッセージ</label>
-        <textarea id="message" name="message" required rows="6" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;"></textarea>
-    </div>
-
-    <button type="submit" class="btn">送信</button>
-</form>
+    <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--muted);">
+        API: <code style="font-family: 'JetBrains Mono', monospace; background: var(--bg2); padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.8rem;">POST /api/contact/</code>
+    </p>
+</div>
 
 <script>
 document.querySelector('form').addEventListener('submit', async function(e) {
@@ -34,7 +49,6 @@ document.querySelector('form').addEventListener('submit', async function(e) {
         email: formData.get('email'),
         message: formData.get('message')
     };
-
     try {
         const response = await fetch('/api/contact/', {
             method: 'POST',
@@ -44,12 +58,12 @@ document.querySelector('form').addEventListener('submit', async function(e) {
             },
             body: JSON.stringify(data)
         });
-
-        const result = await response.json();
         if (response.ok) {
-            alert('お問い合わせを受け付けました。ありがとうございます。');
             this.reset();
+            document.getElementById('success-msg').style.display = 'block';
+            setTimeout(() => { document.getElementById('success-msg').style.display = 'none'; }, 5000);
         } else {
+            const result = await response.json();
             alert('エラー: ' + (result.error || '送信に失敗しました'));
         }
     } catch (error) {
@@ -58,9 +72,3 @@ document.querySelector('form').addEventListener('submit', async function(e) {
 });
 </script>
 {% endblock %}
-
-
-
-
-
-

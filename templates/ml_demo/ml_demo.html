@@ -1,28 +1,56 @@
 {% extends 'base.html' %}
 
-{% block title %}ML Demo - ポートフォリオ{% endblock %}
+{% block title %}ML Demo — Sakamoto Portfolio{% endblock %}
 
 {% block content %}
-<h1 style="font-size: 2rem; margin-bottom: 2rem;">機械学習デモ</h1>
+<div class="section-label">MACHINE LEARNING</div>
+<h1>機械学習デモ</h1>
+<p style="color: var(--text2); margin-bottom: 2rem; max-width: 600px;">
+    scikit-learn でトレーニングしたモデルを使い、入力値に対するリアルタイム推論を実行します。
+    Django REST Framework の POST エンドポイント経由で推論結果を返しています。
+</p>
 
-<div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-    <p style="margin-bottom: 2rem; color: #666;">
-        数値のリストを入力すると、機械学習モデルによる予測結果を表示します。
-    </p>
+<div class="grid grid-2" style="align-items: start;">
+    <div class="card">
+        <h2 style="margin-bottom: 1rem; font-size: 1.1rem;">推論を実行する</h2>
+        <form id="ml-form">
+            <div style="margin-bottom: 1.5rem;">
+                <label for="input-values" style="display: block; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 500;">入力値（カンマ区切り）</label>
+                <input type="text" id="input-values" placeholder="例: 1, 2, 3, 4, 5" required>
+                <p style="font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem;">数値をカンマで区切って入力してください</p>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">推論実行</button>
+        </form>
 
-    <form id="ml-form" style="margin-bottom: 2rem;">
-        <div style="margin-bottom: 1.5rem;">
-            <label for="input-values" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">入力値（カンマ区切り）</label>
-            <input type="text" id="input-values" placeholder="例: 1, 2, 3, 4, 5" required style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
-            <small style="color: #666; display: block; margin-top: 0.25rem;">数値をカンマで区切って入力してください</small>
+        <div id="result" style="display: none; margin-top: 1.5rem; padding: 1rem; background: var(--bg2); border: 1px solid var(--border); border-radius: 6px;">
+            <h3 style="font-size: 0.9rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--accent);">推論結果</h3>
+            <div id="result-content" style="font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--text2);"></div>
         </div>
+    </div>
 
-        <button type="submit" class="btn">予測実行</button>
-    </form>
-
-    <div id="result" style="display: none; padding: 1rem; background: #f0f0f0; border-radius: 4px; margin-top: 2rem;">
-        <h2 style="font-size: 1.3rem; margin-bottom: 1rem;">予測結果</h2>
-        <div id="result-content"></div>
+    <div class="card" style="border-color: var(--border);">
+        <h2 style="margin-bottom: 1rem; font-size: 1.1rem;">このデモの仕組み</h2>
+        <div style="font-size: 0.85rem; color: var(--text2); line-height: 1.8;">
+            <div style="background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; margin-bottom: 1rem; white-space: pre; overflow-x: auto;">Client (JavaScript)
+    |
+    | POST /api/ml/predict/
+    | { "input": [1, 2, 3] }
+    v
+Django REST Framework
+    |
+    | ModelViewSet
+    v
+scikit-learn Model
+    |
+    | .predict()
+    v
+JSON Response
+    { "prediction": 4.2 }</div>
+            <p style="margin-bottom: 0.5rem;"><span style="color: var(--accent);">1.</span> フォームの入力値を JavaScript で JSON に変換</p>
+            <p style="margin-bottom: 0.5rem;"><span style="color: var(--accent);">2.</span> <code style="font-family: 'JetBrains Mono', monospace; background: var(--bg2); padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.82rem;">POST /api/ml/predict/</code> に送信</p>
+            <p style="margin-bottom: 0.5rem;"><span style="color: var(--accent);">3.</span> Django がリクエストを受け取り、モデルをロード</p>
+            <p><span style="color: var(--accent);">4.</span> scikit-learn の <code style="font-family: 'JetBrains Mono', monospace; background: var(--bg2); padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.82rem;">.predict()</code> で推論し結果を返却</p>
+        </div>
     </div>
 </div>
 
@@ -31,30 +59,20 @@ document.getElementById('ml-form').addEventListener('submit', async function(e) 
     e.preventDefault();
     const inputValues = document.getElementById('input-values').value;
     const values = inputValues.split(',').map(v => parseFloat(v.trim())).filter(v => !isNaN(v));
-
-    if (values.length === 0) {
-        alert('有効な数値を入力してください');
-        return;
-    }
-
+    if (values.length === 0) { alert('有効な数値を入力してください'); return; }
     try {
         const response = await fetch('/api/ml/predict/', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ input: values })
         });
-
         const result = await response.json();
-        
         if (response.ok) {
             document.getElementById('result').style.display = 'block';
-            document.getElementById('result-content').innerHTML = `
-                <p><strong>入力値:</strong> [${result.input.join(', ')}]</p>
-                <p><strong>予測値:</strong> ${result.prediction}</p>
-                <p><strong>使用モデル:</strong> ${result.model_used}</p>
-            `;
+            document.getElementById('result-content').innerHTML =
+                '<p><span style="color:var(--muted)">input:</span>  [' + result.input.join(', ') + ']</p>' +
+                '<p><span style="color:var(--muted)">prediction:</span>  <span style="color:var(--green);font-weight:600">' + result.prediction + '</span></p>' +
+                '<p><span style="color:var(--muted)">model:</span>  ' + result.model_used + '</p>';
         } else {
             alert('エラー: ' + (result.error || '予測に失敗しました'));
         }
@@ -64,9 +82,3 @@ document.getElementById('ml-form').addEventListener('submit', async function(e) 
 });
 </script>
 {% endblock %}
-
-
-
-
-
-

@@ -1,43 +1,41 @@
 {% extends 'base.html' %}
 
-{% block title %}プロジェクト一覧 - ポートフォリオ{% endblock %}
+{% block title %}Projects — Sakamoto Portfolio{% endblock %}
 
 {% block content %}
-<h1 style="font-size: 2rem; margin-bottom: 2rem;">プロジェクト一覧</h1>
+<div class="section-label">PROJECTS</div>
+<h1>プロジェクト一覧</h1>
+<p style="color: var(--text2); margin-bottom: 2rem; max-width: 600px;">
+    インフラ構築からアプリケーション開発、AI/ML まで。実際に取り組んだプロジェクトの一覧です。
+</p>
 
-<form method="get" style="margin-bottom: 2rem;">
-    <input type="text" name="q" value="{{ search_query }}" placeholder="検索..." style="padding: 0.5rem; width: 300px; border: 1px solid #ddd; border-radius: 4px;">
-    <button type="submit" class="btn" style="margin-left: 0.5rem;">検索</button>
-</form>
-
-<div style="margin-bottom: 1rem;">
-    <a href="{% url 'project_list' %}" style="margin-right: 0.5rem; padding: 0.5rem 1rem; background: {% if not current_tag %}#007bff{% else %}#f0f0f0{% endif %}; color: {% if not current_tag %}white{% else %}#333{% endif %}; text-decoration: none; border-radius: 4px;">すべて</a>
-    {% for tag in tags %}
-    <a href="{% url 'project_list' %}?tag={{ tag.slug }}" style="margin-right: 0.5rem; padding: 0.5rem 1rem; background: {% if current_tag == tag.slug %}#007bff{% else %}#f0f0f0{% endif %}; color: {% if current_tag == tag.slug %}white{% else %}#333{% endif %}; text-decoration: none; border-radius: 4px;">{{ tag.name }}</a>
-    {% endfor %}
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+    <form method="get" style="display: flex; gap: 0.5rem;">
+        <input type="text" name="q" value="{{ search_query }}" placeholder="キーワード検索..." style="width: 240px;">
+        <button type="submit" class="btn btn-outline">検索</button>
+    </form>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.35rem;">
+        <a href="{% url 'project_list' %}" class="tag {% if not current_tag %}tag-active{% endif %}" style="text-decoration: none;">すべて</a>
+        {% for tag in tags %}
+        <a href="{% url 'project_list' %}?tag={{ tag.slug }}" class="tag {% if current_tag == tag.slug %}tag-active{% endif %}" style="text-decoration: none;">{{ tag.name }}</a>
+        {% endfor %}
+    </div>
 </div>
 
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
+<div class="grid grid-2">
     {% for project in projects %}
-    <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <h2 style="font-size: 1.3rem; margin-bottom: 0.5rem;">
-            <a href="{% url 'project_detail' project.pk %}" style="color: #333; text-decoration: none;">{{ project.title }}</a>
-        </h2>
-        <p style="color: #666; margin-bottom: 1rem;">{{ project.summary }}</p>
-        <div style="margin-top: 1rem;">
+    <a href="{% url 'project_detail' project.pk %}" class="card" style="color: inherit; display: block;">
+        <h2 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem;">{{ project.title }}</h2>
+        <p style="font-size: 0.85rem; color: var(--text2); margin-bottom: 1rem; line-height: 1.7;">{{ project.summary }}</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.75rem;">
             {% for tag in project.tags.all %}
-            <span style="display: inline-block; padding: 0.25rem 0.5rem; background: #e3f2fd; color: #1976d2; border-radius: 4px; font-size: 0.85rem; margin-right: 0.5rem;">{{ tag.name }}</span>
+            <span class="tag">{{ tag.name }}</span>
             {% endfor %}
         </div>
-    </div>
+        <p style="font-size: 0.75rem; color: var(--muted);">{{ project.created_at|date:"Y.m.d" }}</p>
+    </a>
     {% empty %}
-    <p>プロジェクトが見つかりませんでした。</p>
+    <p style="color: var(--muted);">プロジェクトが見つかりませんでした。</p>
     {% endfor %}
 </div>
 {% endblock %}
-
-
-
-
-
-

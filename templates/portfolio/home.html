@@ -1,57 +1,162 @@
 {% extends 'base.html' %}
 
-{% block title %}ホーム - ポートフォリオ{% endblock %}
+{% block title %}Sakamoto Portfolio — Django + ML{% endblock %}
 
 {% block content %}
-<div style="text-align: center; padding: 3rem 0;">
-    <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">ポートフォリオサイト</h1>
-    <p style="font-size: 1.2rem; color: #666; margin-bottom: 3rem;">
-        Python / Django / 機械学習で構築したポートフォリオサイトです
+<!-- Hero -->
+<div style="padding: 3rem 0 4rem;">
+    <div class="section-label">Django + ML Portfolio</div>
+    <h1 style="font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.2; margin-bottom: 1.25rem;">
+        このサイト自体が<br><span style="color: var(--accent);">Django の実装サンプル</span>です
+    </h1>
+    <p style="color: var(--text2); font-size: 1rem; max-width: 620px; margin-bottom: 2rem; line-height: 1.8;">
+        Django REST Framework によるAPI設計、テンプレートによるフロントエンド、
+        scikit-learn による機械学習推論、OpenAPI(Swagger)による自動ドキュメント生成。
+        インフラエンジニア12年の経験を持つ坂本が、バックエンド開発力を示すために構築したサイトです。
+    </p>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+        <a href="{% url 'project_list' %}" class="btn btn-primary">Projects を見る</a>
+        <a href="/api/schema/swagger-ui/" class="btn btn-outline" target="_blank">Swagger UI</a>
+        <a href="{% url 'ml_demo' %}" class="btn btn-outline">ML Demo を試す</a>
+    </div>
+</div>
+
+<!-- What This Site Demonstrates -->
+<div style="margin-bottom: 4rem;">
+    <div class="section-label">TECH DEMO</div>
+    <h2 style="margin-bottom: 1.5rem;">このサイトで実装しているもの</h2>
+    <div class="grid grid-3">
+        <div class="card">
+            <div style="font-size: 1.5rem; margin-bottom: 0.75rem;">&#9881;</div>
+            <h3 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem;">REST API (DRF)</h3>
+            <p style="font-size: 0.82rem; color: var(--muted); line-height: 1.7;">
+                Projects / Blog / Contact の CRUD API。ページネーション、フィルタリング、検索に対応。
+            </p>
+        </div>
+        <div class="card">
+            <div style="font-size: 1.5rem; margin-bottom: 0.75rem;">&#128202;</div>
+            <h3 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem;">OpenAPI ドキュメント</h3>
+            <p style="font-size: 0.82rem; color: var(--muted); line-height: 1.7;">
+                drf-spectacular による Swagger UI / ReDoc の自動生成。API仕様をインタラクティブに確認可能。
+            </p>
+        </div>
+        <div class="card">
+            <div style="font-size: 1.5rem; margin-bottom: 0.75rem;">&#129302;</div>
+            <h3 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem;">機械学習推論 API</h3>
+            <p style="font-size: 0.82rem; color: var(--muted); line-height: 1.7;">
+                scikit-learn モデルをロードし、POST リクエストに対してリアルタイム推論結果を返すエンドポイント。
+            </p>
+        </div>
+        <div class="card">
+            <div style="font-size: 1.5rem; margin-bottom: 0.75rem;">&#128451;</div>
+            <h3 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem;">PostgreSQL + Migration</h3>
+            <p style="font-size: 0.82rem; color: var(--muted); line-height: 1.7;">
+                本番は PostgreSQL、開発は SQLite。Django マイグレーションによるスキーマ管理。
+            </p>
+        </div>
+        <div class="card">
+            <div style="font-size: 1.5rem; margin-bottom: 0.75rem;">&#128051;</div>
+            <h3 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem;">Docker / Render デプロイ</h3>
+            <p style="font-size: 0.82rem; color: var(--muted); line-height: 1.7;">
+                docker-compose によるローカル開発環境と、Render + gunicorn + WhiteNoise による本番デプロイ。
+            </p>
+        </div>
+        <div class="card">
+            <div style="font-size: 1.5rem; margin-bottom: 0.75rem;">&#128268;</div>
+            <h3 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem;">テンプレート + Markdown</h3>
+            <p style="font-size: 0.82rem; color: var(--muted); line-height: 1.7;">
+                Django テンプレートエンジンによる SSR。ブログ本文は Markdown で記述し HTML に変換して表示。
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- API Endpoints -->
+<div style="margin-bottom: 4rem;">
+    <div class="section-label">API ENDPOINTS</div>
+    <h2 style="margin-bottom: 1.5rem;">公開 API 一覧</h2>
+    <div class="card" style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+            <thead>
+                <tr style="border-bottom: 1px solid var(--border);">
+                    <th style="padding: 0.6rem 1rem; text-align: left; color: var(--muted); font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">Method</th>
+                    <th style="padding: 0.6rem 1rem; text-align: left; color: var(--muted); font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">Endpoint</th>
+                    <th style="padding: 0.6rem 1rem; text-align: left; color: var(--muted); font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="border-bottom: 1px solid var(--border);">
+                    <td style="padding: 0.6rem 1rem;"><span class="tag tag-active">GET</span></td>
+                    <td style="padding: 0.6rem 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;">/api/projects/</td>
+                    <td style="padding: 0.6rem 1rem; color: var(--text2);">プロジェクト一覧</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                    <td style="padding: 0.6rem 1rem;"><span class="tag tag-active">GET</span></td>
+                    <td style="padding: 0.6rem 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;">/api/projects/{id}/</td>
+                    <td style="padding: 0.6rem 1rem; color: var(--text2);">プロジェクト詳細</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                    <td style="padding: 0.6rem 1rem;"><span class="tag tag-active">GET</span></td>
+                    <td style="padding: 0.6rem 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;">/api/blog/</td>
+                    <td style="padding: 0.6rem 1rem; color: var(--text2);">ブログ一覧</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                    <td style="padding: 0.6rem 1rem;"><span class="tag" style="border-color: var(--green); color: var(--green);">POST</span></td>
+                    <td style="padding: 0.6rem 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;">/api/contact/</td>
+                    <td style="padding: 0.6rem 1rem; color: var(--text2);">お問い合わせ送信</td>
+                </tr>
+                <tr>
+                    <td style="padding: 0.6rem 1rem;"><span class="tag" style="border-color: var(--green); color: var(--green);">POST</span></td>
+                    <td style="padding: 0.6rem 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;">/api/ml/predict/</td>
+                    <td style="padding: 0.6rem 1rem; color: var(--text2);">ML推論実行</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--muted);">
+        全APIの詳細仕様は <a href="/api/schema/swagger-ui/">Swagger UI</a> または <a href="/api/schema/redoc/">ReDoc</a> で確認できます。
     </p>
 </div>
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
-    <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">スキル</h2>
-        <ul style="list-style: none; padding: 0;">
-            <li style="padding: 0.5rem 0;">• Python / Django</li>
-            <li style="padding: 0.5rem 0;">• 機械学習 (scikit-learn)</li>
-            <li style="padding: 0.5rem 0;">• REST API</li>
-            <li style="padding: 0.5rem 0;">• PostgreSQL</li>
-            <li style="padding: 0.5rem 0;">• Docker</li>
-        </ul>
+<!-- Recent Projects -->
+{% if projects %}
+<div style="margin-bottom: 4rem;">
+    <div class="section-label">PROJECTS</div>
+    <h2 style="margin-bottom: 1.5rem;">プロジェクト</h2>
+    <div class="grid grid-2">
+        {% for project in projects %}
+        <a href="{% url 'project_detail' project.pk %}" class="card" style="color: inherit; display: block;">
+            <h3 style="font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem;">{{ project.title }}</h3>
+            <p style="font-size: 0.85rem; color: var(--text2); margin-bottom: 1rem; line-height: 1.7;">{{ project.summary }}</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.3rem;">
+                {% for tag in project.tags.all %}
+                <span class="tag">{{ tag.name }}</span>
+                {% endfor %}
+            </div>
+        </a>
+        {% endfor %}
     </div>
-
-    <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">リンク</h2>
-        <ul style="list-style: none; padding: 0;">
-            <li style="padding: 0.5rem 0;">
-                <a href="https://github.com" target="_blank" style="color: #007bff; text-decoration: none;">GitHub</a>
-            </li>
-            <li style="padding: 0.5rem 0;">
-                <a href="https://linkedin.com" target="_blank" style="color: #007bff; text-decoration: none;">LinkedIn</a>
-            </li>
-        </ul>
+    <div style="margin-top: 1.5rem;">
+        <a href="{% url 'project_list' %}" class="btn btn-outline">すべてのプロジェクトを見る &rarr;</a>
     </div>
 </div>
+{% endif %}
 
-<div style="margin-top: 3rem;">
-    <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">最近のプロジェクト</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-        {% for project in projects %}
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-            <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">
-                <a href="{% url 'project_detail' project.pk %}" style="color: #333; text-decoration: none;">{{ project.title }}</a>
-            </h3>
-            <p style="color: #666; font-size: 0.9rem;">{{ project.summary|truncatewords:20 }}</p>
-        </div>
-        {% endfor %}
+<!-- Tech Stack -->
+<div>
+    <div class="section-label">TECH STACK</div>
+    <h2 style="margin-bottom: 1.5rem;">このサイトの技術構成</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+        <span class="tag">Python 3.11</span>
+        <span class="tag">Django 5.0</span>
+        <span class="tag">DRF 3.14</span>
+        <span class="tag">drf-spectacular</span>
+        <span class="tag">scikit-learn</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Docker</span>
+        <span class="tag">gunicorn</span>
+        <span class="tag">WhiteNoise</span>
+        <span class="tag">Render</span>
     </div>
 </div>
 {% endblock %}
-
-
-
-
-
-

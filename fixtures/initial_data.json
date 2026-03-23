@@ -19,105 +19,158 @@
     "model": "portfolio.tag",
     "pk": 3,
     "fields": {
-      "name": "機械学習",
-      "slug": "machine-learning"
+      "name": "AWS",
+      "slug": "aws"
     }
   },
   {
     "model": "portfolio.tag",
     "pk": 4,
     "fields": {
-      "name": "React",
-      "slug": "react"
+      "name": "Infrastructure",
+      "slug": "infrastructure"
+    }
+  },
+  {
+    "model": "portfolio.tag",
+    "pk": 5,
+    "fields": {
+      "name": "AI / ML",
+      "slug": "ai-ml"
+    }
+  },
+  {
+    "model": "portfolio.tag",
+    "pk": 6,
+    "fields": {
+      "name": "TypeScript",
+      "slug": "typescript"
+    }
+  },
+  {
+    "model": "portfolio.tag",
+    "pk": 7,
+    "fields": {
+      "name": "Automation",
+      "slug": "automation"
     }
   },
   {
     "model": "portfolio.project",
     "pk": 1,
     "fields": {
-      "title": "Eコマースプラットフォーム",
-      "summary": "DjangoとReactで構築したフルスタックEコマースアプリケーション",
-      "description": "このプロジェクトは、Django REST Frameworkを使用したバックエンドAPIとReactで構築されたフロントエンドからなるEコマースプラットフォームです。ユーザー認証、商品管理、決済機能などを実装しています。",
-      "tech_stack": "Django, React, PostgreSQL, Docker",
-      "github_url": "https://github.com/example/ecommerce",
-      "demo_url": "https://ecommerce-demo.example.com",
+      "title": "決済システムリプレイス & AIカメラBIツール",
+      "summary": "金融機関の決済システム全面リプレイスに加え、Python + OpenCV による顔認識AIカメラと React/TypeScript のBIダッシュボードを開発",
+      "description": "大手金融機関の決済システムをオンプレミスからクラウドネイティブ構成へ全面リプレイスするプロジェクト。インフラ設計・構築に加え、店舗向けAIカメラシステムを Python（OpenCV / face_recognition / dlib）で開発し、来客属性（年齢・性別推定）をリアルタイム分析。分析結果を可視化する BI ダッシュボードを React + TypeScript + Recharts で構築し、経営判断を支援するデータ基盤を実現した。\n\nインフラエンジニアとしての基盤構築スキルと、フルスタック開発スキルの両方を活かしたプロジェクト。チーム最大24名のマネジメントも担当。",
+      "tech_stack": "Python, OpenCV, face_recognition, dlib, React, TypeScript, Recharts, AWS, Docker",
+      "github_url": "",
       "is_published": true,
-      "created_at": "2024-01-01T00:00:00Z",
-      "updated_at": "2024-01-01T00:00:00Z",
-      "tags": [1, 2]
+      "created_at": "2023-06-01T00:00:00Z",
+      "updated_at": "2023-06-01T00:00:00Z",
+      "tags": [1, 3, 5, 6]
     }
   },
   {
     "model": "portfolio.project",
     "pk": 2,
     "fields": {
-      "title": "機械学習予測システム",
-      "summary": "scikit-learnを使用した機械学習予測システム",
-      "description": "データ分析と機械学習モデルを使用して、様々な予測タスクを実行するシステムです。モデルの学習から推論まで、一貫したワークフローを実装しています。",
-      "tech_stack": "Python, scikit-learn, pandas, Flask",
-      "github_url": "https://github.com/example/ml-system",
+      "title": "リアルタイム顔認識システム",
+      "summary": "Python + OpenCV + face_recognition で構築したリアルタイム顔認識システム。WEBカメラ・IPカメラに対応し、来客属性分析を実現",
+      "description": "WEBカメラやIPカメラ（RTSP/HTTP）に接続し、リアルタイムで顔検出・個人識別・属性推定を行うシステム。\n\n技術的な特徴:\n- face_recognition ライブラリによる128次元特徴ベクトルでの顔マッチング\n- フレームスキップ・解像度調整・マルチスレッド処理によるパフォーマンス最適化\n- 顔特徴ベクトルの暗号化保存によるセキュリティ対策\n\n用途:\n- 入退室管理（オフィス・施設セキュリティ）\n- 来客分析（年齢・性別推定によるマーケティング活用）\n- 本人確認（ログイン・決済時の認証）\n\n※ 顔認証ライブラリ（opencv-python, face-recognition, dlib）は重いため、本番環境には含まれていません。ローカル環境での実行を推奨。",
+      "tech_stack": "Python, OpenCV, face_recognition, dlib, NumPy",
+      "github_url": "",
       "is_published": true,
-      "created_at": "2024-01-02T00:00:00Z",
-      "updated_at": "2024-01-02T00:00:00Z",
-      "tags": [1, 3]
+      "created_at": "2023-08-01T00:00:00Z",
+      "updated_at": "2023-08-01T00:00:00Z",
+      "tags": [1, 5]
     }
   },
   {
     "model": "portfolio.project",
     "pk": 3,
     "fields": {
-      "title": "タスク管理アプリ",
-      "summary": "DjangoとVue.jsを使用したタスク管理アプリケーション",
-      "description": "リアルタイムでタスクを管理できるアプリケーションです。ドラッグ&ドロップによる優先順位の変更、タグ付け、検索機能などを実装しています。",
-      "tech_stack": "Django, Vue.js, PostgreSQL, WebSocket",
-      "github_url": "https://github.com/example/task-manager",
-      "demo_url": "https://task-manager-demo.example.com",
+      "title": "5G通信基盤サーバ検証環境構築",
+      "summary": "大手通信キャリア向け5Gサーバの検証環境を VMware ESXi + vCenter で設計・構築。BIOS/ファームウェア検証を効率化",
+      "description": "大手通信キャリアの5Gインフラ向けサーバ検証プロジェクト。物理サーバ上に VMware ESXi 7.0 / vCenter 環境を構築し、5G通信基盤として必要なサーバのBIOS設定・ファームウェアバージョン・ネットワーク構成の検証を実施。\n\n検証環境の構築にあたり、vMotion 実行時に BIOS バージョン不整合によるライブマイグレーション失敗が発生。ESXi ホスト間の BIOS/ファームウェア統一手順を策定し、問題を解決。この知見をチーム内ナレッジとして共有し、同様の問題の再発を防止した。\n\n結果として、検証工程の遅延リスクを95%回避し、プロジェクト納期を達成。",
+      "tech_stack": "VMware ESXi 7.0, vCenter, vMotion, Linux, Shell Script",
+      "github_url": "",
       "is_published": true,
-      "created_at": "2024-01-03T00:00:00Z",
-      "updated_at": "2024-01-03T00:00:00Z",
-      "tags": [2, 4]
+      "created_at": "2022-03-01T00:00:00Z",
+      "updated_at": "2022-03-01T00:00:00Z",
+      "tags": [4]
+    }
+  },
+  {
+    "model": "portfolio.project",
+    "pk": 4,
+    "fields": {
+      "title": "インフラ運用自動化プラットフォーム",
+      "summary": "Ansible + Terraform + シェルスクリプトで構築した運用自動化基盤。手作業を90%削減し、年間1,200時間の工数を削減",
+      "description": "金融機関のインフラ運用における手作業を自動化するプラットフォームを構築。\n\n主な自動化範囲:\n- Ansible によるサーバ構成管理・パッチ適用の自動化\n- Terraform による AWS インフラのコード化（IaC）\n- シェルスクリプトによる日常運用タスクの自動実行\n- 監視アラート対応の自動化（一次切り分け・自動復旧）\n\n導入効果:\n- 手作業の90%を自動化\n- 年間約1,200時間の運用工数を削減\n- ヒューマンエラーによる障害を60%削減\n- 構成変更のリードタイムを3日→30分に短縮\n\nこのプロジェクトでは、既存の運用フローを分析し、自動化の優先度を判断するフレームワークも策定。「頻度 × 工数 × リスク」のスコアリングで自動化対象を選定した。",
+      "tech_stack": "Ansible, Terraform, AWS, Shell Script, Python, Docker",
+      "github_url": "",
+      "is_published": true,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z",
+      "tags": [3, 4, 7]
+    }
+  },
+  {
+    "model": "portfolio.project",
+    "pk": 5,
+    "fields": {
+      "title": "Django ポートフォリオサイト（このサイト）",
+      "summary": "Django REST Framework + scikit-learn + PostgreSQL で構築したポートフォリオサイト。Render にデプロイ",
+      "description": "このサイト自体が Django の実装サンプルです。\n\n技術的な特徴:\n- Django REST Framework による RESTful API 設計\n- drf-spectacular による OpenAPI (Swagger UI) 自動生成\n- scikit-learn モデルによるリアルタイム ML 推論エンドポイント\n- PostgreSQL によるデータ永続化\n- WhiteNoise による静的ファイル配信\n- Render へのデプロイ（gunicorn + PostgreSQL）\n\nインフラエンジニアがバックエンド開発もできることを証明するために構築したデモサイト。API設計、データベース設計、ML統合、クラウドデプロイまで一貫して実装。",
+      "tech_stack": "Django, DRF, scikit-learn, PostgreSQL, Render, gunicorn, WhiteNoise",
+      "github_url": "https://github.com/masawork/python-portfolio-rebuild",
+      "demo_url": "",
+      "is_published": true,
+      "created_at": "2024-12-01T00:00:00Z",
+      "updated_at": "2024-12-01T00:00:00Z",
+      "tags": [1, 2, 5]
     }
   },
   {
     "model": "blog.blogpost",
     "pk": 1,
     "fields": {
-      "title": "Django REST Frameworkの基礎",
-      "slug": "django-rest-framework-basics",
-      "body_markdown": "# Django REST Frameworkの基礎\n\nDjango REST Frameworkは、DjangoでRESTful APIを構築するための強力なツールキットです。\n\n## 主な特徴\n\n- **シリアライザー**: データのシリアライゼーションとバリデーション\n- **ViewSets**: CRUD操作の簡素化\n- **認証・権限**: 柔軟な認証システム\n- **スロットリング**: APIのレート制限\n\n## 使い方\n\n```python\nfrom rest_framework import viewsets\nfrom .models import Project\nfrom .serializers import ProjectSerializer\n\nclass ProjectViewSet(viewsets.ModelViewSet):\n    queryset = Project.objects.all()\n    serializer_class = ProjectSerializer\n```\n\nDjango REST Frameworkを使用することで、効率的にRESTful APIを構築できます。",
-      "summary": "Django REST Frameworkを使用したRESTful APIの構築方法を解説します。",
+      "title": "インフラ運用の手作業を90%削減した自動化戦略",
+      "slug": "infrastructure-automation-90-percent-reduction",
+      "body_markdown": "# インフラ運用の手作業を90%削減した自動化戦略\n\n12年間のインフラエンジニア経験の中で、最もインパクトが大きかった取り組みが運用自動化です。金融機関のインフラ運用で、手作業の90%を自動化し、年間約1,200時間の工数削減を実現しました。\n\n## 自動化前の課題\n\n金融機関のインフラ運用では、厳格な変更管理プロセスが求められます。一方で、日常的な運用タスク（パッチ適用、構成変更、監視対応）の多くは手作業で行われており、以下の問題がありました。\n\n- サーバ100台以上へのパッチ適用に毎回3日かかる\n- 手作業によるヒューマンエラーが月平均2件発生\n- 夜間の監視アラート対応で担当者の負荷が高い\n- 構成変更のたびに手順書を作成・レビューする工数\n\n## 自動化の優先度フレームワーク\n\nすべてを一度に自動化することは現実的ではありません。そこで「**頻度 × 工数 × リスク**」のスコアリングで自動化対象を選定しました。\n\n| タスク | 頻度 | 工数 | リスク | スコア | 優先度 |\n|--------|------|------|--------|--------|--------|\n| パッチ適用 | 月次 | 3日 | 高 | 27 | ★★★ |\n| 監視アラート一次対応 | 日次 | 30分 | 中 | 18 | ★★★ |\n| 構成情報収集 | 週次 | 2時間 | 低 | 6 | ★★ |\n| ログローテーション | 日次 | 5分 | 低 | 3 | ★ |\n\n## 使用したツールと実装\n\n### Ansible によるサーバ構成管理\n\nAnsible を導入し、サーバのパッチ適用・構成変更を自動化しました。\n\n```yaml\n# パッチ適用の Playbook（概要）\n- hosts: production_servers\n  become: yes\n  serial: 10%\n  tasks:\n    - name: Apply security patches\n      yum:\n        name: '*'\n        state: latest\n        security: yes\n      notify: reboot if required\n```\n\nポイントは `serial: 10%` でローリングアップデートを実現し、サービス影響を最小化した点です。\n\n### Terraform による IaC\n\nAWS インフラをコード化し、環境構築の再現性を確保しました。\n\n```hcl\n# VPC + サブネット構成（概要）\nmodule \"vpc\" {\n  source  = \"terraform-aws-modules/vpc/aws\"\n  cidr    = \"10.0.0.0/16\"\n  azs     = [\"ap-northeast-1a\", \"ap-northeast-1c\"]\n}\n```\n\n### 監視アラート自動対応\n\nシェルスクリプト + Python で監視アラートの一次切り分けと自動復旧を実装しました。\n\n## 導入効果\n\n| 指標 | Before | After | 改善率 |\n|------|--------|-------|--------|\n| パッチ適用時間 | 3日 | 4時間 | 94% |\n| 月間ヒューマンエラー | 2件 | 0.2件 | 90% |\n| 構成変更リードタイム | 3日 | 30分 | 99% |\n| 夜間対応回数 | 月15回 | 月3回 | 80% |\n\n## 得られた教訓\n\n自動化の最大の障壁は技術ではなく、**組織の合意形成**です。金融機関では「手作業のほうが安全」という文化が根強く、自動化の信頼性を証明するために、段階的な導入とテスト結果の可視化が不可欠でした。",
+      "summary": "金融機関のインフラ運用で手作業の90%を自動化し、年間1,200時間の工数を削減した戦略と実装の詳細。",
       "is_published": true,
-      "created_at": "2024-01-10T00:00:00Z",
-      "updated_at": "2024-01-10T00:00:00Z",
-      "tags": [1, 2]
+      "created_at": "2024-11-15T00:00:00Z",
+      "updated_at": "2024-11-15T00:00:00Z",
+      "tags": [4, 7]
     }
   },
   {
     "model": "blog.blogpost",
     "pk": 2,
     "fields": {
-      "title": "機械学習モデルのデプロイ",
-      "slug": "ml-model-deployment",
-      "body_markdown": "# 機械学習モデルのデプロイ\n\n機械学習モデルを本番環境にデプロイする方法について解説します。\n\n## デプロイ方法\n\n1. **モデルの保存**: pickleやjoblibを使用\n2. **API化**: FlaskやFastAPIでREST APIを作成\n3. **コンテナ化**: Dockerを使用してコンテナ化\n4. **デプロイ**: AWS、GCP、Azureなどにデプロイ\n\n## 推論の最適化\n\n- バッチ処理による効率化\n- キャッシュの活用\n- モデルの軽量化\n\n機械学習モデルを本番環境で運用する際は、パフォーマンスとスケーラビリティを考慮する必要があります。",
-      "summary": "機械学習モデルを本番環境にデプロイする方法とベストプラクティスを紹介します。",
+      "title": "vMotion失敗の原因はBIOSバージョン不整合だった",
+      "slug": "vmware-vmotion-bios-version-mismatch",
+      "body_markdown": "# vMotion失敗の原因はBIOSバージョン不整合だった\n\n5G通信基盤のサーバ検証プロジェクトで遭遇したトラブルシューティングの記録です。VMware vMotion が断続的に失敗する問題を調査し、根本原因が ESXi ホスト間の BIOS バージョン不整合にあることを特定しました。\n\n## 発生した問題\n\n5G通信キャリア向けのサーバ検証環境を VMware ESXi 7.0 / vCenter で構築している最中、vMotion（ライブマイグレーション）が特定のホスト間でのみ失敗する現象が発生しました。\n\nエラーメッセージ:\n```\nMigration was unable to complete: The virtual machine is using CPU features \nthat are incompatible with the target host.\n```\n\n## 調査プロセス\n\n### 1. EVC（Enhanced vMotion Compatibility）の確認\n\nまず EVC モードの設定を確認しましたが、クラスタ全体で同一の EVC モードが設定されていました。\n\n### 2. CPU 機能フラグの比較\n\n次に、各 ESXi ホストの CPU 機能フラグを比較しました。\n\n```bash\n# ESXi シェルでの確認コマンド\nvim-cmd hostsvc/hostsummary | grep cpuModel\nesxcli hardware cpu global get\n```\n\nCPU モデルは全ホストで同一（Intel Xeon）でしたが、対応する命令セットに微妙な差異がありました。\n\n### 3. BIOS バージョンの確認\n\nCPU の命令セット差異の原因を掘り下げたところ、BIOS バージョンが異なることを発見しました。\n\n| ホスト | BIOS バージョン | vMotion |\n|--------|-----------------|----------|\n| esxi-01 | 2.8.1 | OK |\n| esxi-02 | 2.8.1 | OK |\n| esxi-03 | 2.6.0 | NG |\n| esxi-04 | 2.6.0 | NG |\n\nBIOS バージョン 2.6.0 のホストでは、特定の CPU マイクロコード更新が適用されておらず、一部の CPU 命令セットが有効化されていませんでした。\n\n## 解決策\n\n1. 全ホストの BIOS を最新バージョン（2.8.1）に統一\n2. BIOS 更新後に ESXi ホストを再起動\n3. vCenter で CPU 機能フラグの整合性を再確認\n4. vMotion テストの成功を確認\n\n## 再発防止策\n\n- サーバ導入時の BIOS/ファームウェアバージョン確認手順書を作成\n- 定期的なファームウェア棚卸しスクリプトを作成\n- vCenter アラームで CPU 互換性の監視を設定\n\n## 教訓\n\nvMotion の失敗原因は、ネットワーク設定や VM の構成に注目しがちですが、ハードウェアレベル（BIOS/ファームウェア）の不整合も重要な確認ポイントです。特に大量のサーバを段階的に導入する環境では、導入時期によってファームウェアバージョンが異なることがあり、検証工程の早い段階で統一しておくことが重要です。\n\nこの知見をチーム内ナレッジとして共有し、以降のプロジェクトでは検証工程の遅延リスクを95%回避できるようになりました。",
+      "summary": "VMware vMotion が特定ホスト間で失敗する問題を調査し、ESXi ホストの BIOS バージョン不整合が根本原因だと特定した記録。",
       "is_published": true,
-      "created_at": "2024-01-11T00:00:00Z",
-      "updated_at": "2024-01-11T00:00:00Z",
-      "tags": [1, 3]
+      "created_at": "2024-10-20T00:00:00Z",
+      "updated_at": "2024-10-20T00:00:00Z",
+      "tags": [4]
     }
   },
   {
     "model": "blog.blogpost",
     "pk": 3,
     "fields": {
-      "title": "Dockerを使った開発環境の構築",
-      "slug": "docker-development-environment",
-      "body_markdown": "# Dockerを使った開発環境の構築\n\nDockerを使用することで、一貫した開発環境を構築できます。\n\n## Docker Composeの設定\n\n```yaml\nversion: '3.8'\nservices:\n  db:\n    image: postgres:15\n    environment:\n      POSTGRES_DB: mydb\n      POSTGRES_USER: user\n      POSTGRES_PASSWORD: pass\n  web:\n    build: .\n    command: python manage.py runserver 0.0.0.0:8000\n    volumes:\n      - .:/app\n    ports:\n      - \"8000:8000\"\n```\n\n## メリット\n\n- 環境の一貫性\n- 依存関係の管理\n- 簡単なセットアップ\n\nDockerを使用することで、開発環境の構築が簡単になります。",
-      "summary": "DockerとDocker Composeを使用した開発環境の構築方法を解説します。",
+      "title": "Django REST Framework で ML 推論 API を構築する",
+      "slug": "django-rest-framework-ml-inference-api",
+      "body_markdown": "# Django REST Framework で ML 推論 API を構築する\n\nこのポートフォリオサイトでも実装している、Django REST Framework (DRF) と scikit-learn を組み合わせた ML 推論 API の構築方法を解説します。\n\n## アーキテクチャ\n\n```\nClient (JavaScript)\n    |\n    | POST /api/ml/predict/\n    | { \"input\": [1, 2, 3] }\n    v\nDjango REST Framework\n    |\n    | ModelViewSet\n    v\nscikit-learn Model\n    |\n    | .predict()\n    v\nJSON Response\n    { \"prediction\": 4.2 }\n```\n\nシンプルな構成ですが、DRF の Serializer によるバリデーション、drf-spectacular による OpenAPI ドキュメント自動生成、エラーハンドリングなどを組み込んでいます。\n\n## モデルの学習と保存\n\nまず scikit-learn でモデルを学習し、joblib で保存します。\n\n```python\nimport numpy as np\nfrom sklearn.linear_model import LinearRegression\nimport joblib\n\n# サンプルデータで学習\nX = np.array([[1], [2], [3], [4], [5]])\ny = np.array([2.1, 4.0, 5.9, 8.1, 10.0])\n\nmodel = LinearRegression()\nmodel.fit(X, y)\n\n# モデルを保存\njoblib.dump(model, 'ml_model.pkl')\n```\n\n## DRF での API 実装\n\n### Serializer\n\n```python\nfrom rest_framework import serializers\n\nclass PredictionSerializer(serializers.Serializer):\n    input = serializers.ListField(\n        child=serializers.FloatField(),\n        min_length=1\n    )\n```\n\n### ViewSet\n\n```python\nimport joblib\nimport numpy as np\nfrom rest_framework import viewsets, status\nfrom rest_framework.response import Response\n\nclass PredictionViewSet(viewsets.ViewSet):\n    def create(self, request):\n        serializer = PredictionSerializer(data=request.data)\n        serializer.is_valid(raise_exception=True)\n        \n        values = serializer.validated_data['input']\n        model = joblib.load('ml_model.pkl')\n        \n        X = np.array(values).reshape(-1, 1)\n        prediction = model.predict(X)\n        \n        return Response({\n            'input': values,\n            'prediction': prediction.tolist(),\n            'model_used': 'LinearRegression'\n        })\n```\n\n## drf-spectacular による OpenAPI 自動生成\n\ndrf-spectacular を導入することで、Swagger UI が自動生成されます。\n\n```python\n# settings.py\nINSTALLED_APPS = [\n    ...\n    'drf_spectacular',\n]\n\nREST_FRAMEWORK = {\n    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',\n}\n```\n\n`/api/docs/` にアクセスすると、全 API エンドポイントのドキュメントが確認できます。このサイトの Swagger UI もぜひ確認してみてください。\n\n## デプロイ時の考慮事項\n\n- **モデルファイルの管理**: Git LFS や S3 からの動的ロードを検討\n- **メモリ管理**: モデルをグローバルにキャッシュし、リクエストごとのロードを避ける\n- **バリデーション**: 入力値の範囲チェック、型チェックを Serializer で厳密に\n- **エラーハンドリング**: モデルファイル未存在、推論エラーの適切なハンドリング\n\nこのサイト自体がこの構成で動いているので、実際の動作は ML デモページで確認できます。",
+      "summary": "Django REST Framework と scikit-learn を組み合わせた ML 推論 API の設計・実装方法を、このサイトの実装をベースに解説。",
       "is_published": true,
-      "created_at": "2024-01-12T00:00:00Z",
-      "updated_at": "2024-01-12T00:00:00Z",
-      "tags": [2]
+      "created_at": "2024-12-05T00:00:00Z",
+      "updated_at": "2024-12-05T00:00:00Z",
+      "tags": [1, 2, 5]
     }
   },
   {
@@ -126,14 +179,12 @@
     "fields": {
       "title": "Pythonで実装する顔認証システム",
       "slug": "face-recognition-system",
-      "body_markdown": "# Pythonで実装する顔認証システム\n\n顔認証は、画像や動画から人の顔を検出し、個人を識別する技術です。PythonとOpenCV、face_recognitionライブラリを使用することで、簡単に顔認証システムを構築できます。\n\n## 顔認証の技術概要\n\n### 1. 顔検出（Face Detection）\n\n顔検出は、画像や動画フレーム内から顔の位置を特定する処理です。\n\n- **Haar Cascade**: OpenCVに組み込まれている古典的な手法\n- **Dlib HOG**: 方向勾配ヒストグラムを使用した検出方法\n- **Deep Learning**: CNNベースの高精度な検出（MTCNN、RetinaFaceなど）\n\n### 2. 顔特徴抽出（Face Encoding）\n\n検出された顔から、個人を識別するための特徴ベクトルを抽出します。\n\n- **face_recognitionライブラリ**: dlibの深層学習モデルを使用\n- **128次元の特徴ベクトル**: 各顔を128次元の数値ベクトルに変換\n- **距離計算**: ユークリッド距離で顔の類似度を判定\n\n### 3. 顔マッチング（Face Matching）\n\n抽出した特徴ベクトルを既知の顔データベースと比較し、一致する人物を特定します。\n\n```python\nimport face_recognition\nimport cv2\n\n# 既知の顔画像を読み込み\nknown_image = face_recognition.load_image_file(\"known_person.jpg\")\nknown_encoding = face_recognition.face_encodings(known_image)[0]\n\n# カメラから取得した画像を処理\nvideo_capture = cv2.VideoCapture(0)\nwhile True:\n    ret, frame = video_capture.read()\n    \n    # 顔を検出してエンコーディング\n    face_locations = face_recognition.face_locations(frame)\n    face_encodings = face_recognition.face_encodings(frame, face_locations)\n    \n    # マッチング\n    for face_encoding in face_encodings:\n        matches = face_recognition.compare_faces([known_encoding], face_encoding)\n        if matches[0]:\n            print(\"認証成功！\")\n```\n\n## 実装のポイント\n\n### WEBカメラの接続\n\nIPカメラやWEBカメラに接続するには、カメラのストリームURLを指定します。\n\n```python\n# USBカメラの場合\ncap = cv2.VideoCapture(0)\n\n# IPカメラの場合（例：http://192.168.1.100:8080/video）\ncap = cv2.VideoCapture(\"http://192.168.1.100:8080/video\")\n\n# RTSPストリームの場合\ncap = cv2.VideoCapture(\"rtsp://192.168.1.100:554/stream\")\n```\n\n### パフォーマンス最適化\n\n- **フレームスキップ**: 全フレームを処理せず、数フレームおきに処理\n- **解像度の調整**: 処理速度を上げるため、画像をリサイズ\n- **マルチスレッド**: 顔検出と特徴抽出を別スレッドで処理\n\n## セキュリティとプライバシー\n\n- **データの暗号化**: 顔特徴ベクトルを暗号化して保存\n- **同意の取得**: 顔認証を使用する前にユーザーの同意を得る\n- **データの最小化**: 必要最小限のデータのみを保存\n\n## 応用分野\n\n- **入退室管理**: オフィスや施設のセキュリティ\n- **認証システム**: ログインや決済時の本人確認\n- **来客管理**: 来訪者の自動記録\n- **マーケティング**: 顧客の年齢や性別の推定\n\n顔認証技術は、適切に実装することで、セキュアで便利なシステムを構築できます。\n\n## ローカル環境での実行方法\n\n顔認証ライブラリは重いため、Dockerイメージには含まれていません。ローカル環境で実行する場合は、以下の手順に従ってください。\n\n### 1. 必要なライブラリのインストール\n\n```bash\n# macOSの場合\nbrew install cmake\npip install opencv-python face-recognition dlib\n\n# Linuxの場合\nsudo apt-get install cmake libopenblas-dev liblapack-dev\npip install opencv-python face-recognition dlib\n\n# Windowsの場合\n# Visual Studio Build Toolsが必要です\npip install opencv-python face-recognition dlib\n```\n\n**注意**: `dlib`のインストールには時間がかかります（10-20分程度）。\n\n### 2. サンプルコードの実行\n\n以下のサンプルコードを`face_recognition_demo.py`として保存してください：\n\n```python\nimport cv2\nimport face_recognition\n\n# WEBカメラのURLを指定（例: http://192.168.1.100:8080/video または 0（ローカルカメラ））\ncamera_url = input(\"カメラURLを入力してください（例: 0 または http://192.168.1.100:8080/video）: \")\n\n# カメラに接続\nif camera_url.isdigit():\n    cap = cv2.VideoCapture(int(camera_url))\nelse:\n    cap = cv2.VideoCapture(camera_url)\n\nif not cap.isOpened():\n    print(f\"カメラに接続できませんでした: {camera_url}\")\n    exit(1)\n\nprint(\"顔認証を開始します。'q'キーで終了します。\")\n\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n    \n    # BGRからRGBに変換\n    rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)\n    \n    # 顔の位置を検出\n    face_locations = face_recognition.face_locations(rgb_frame)\n    \n    # 検出された顔に枠を描画\n    for (top, right, bottom, left) in face_locations:\n        cv2.rectangle(frame, (left, top), (right, bottom), (0, 255, 0), 2)\n        cv2.putText(frame, 'Face Detected', (left, top - 10),\n                   cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)\n    \n    # 結果を表示\n    cv2.imshow('Face Recognition', frame)\n    \n    # 'q'キーで終了\n    if cv2.waitKey(1) & 0xFF == ord('q'):\n        break\n\ncap.release()\ncv2.destroyAllWindows()\nprint(\"顔認証を終了しました。\")\n```\n\n### 3. 実行\n\n```bash\npython face_recognition_demo.py\n```\n\n### トラブルシューティング\n\n- **カメラに接続できない**: カメラのURLが正しいか確認してください\n- **dlibのインストールエラー**: CMakeとC++コンパイラがインストールされているか確認してください\n- **パフォーマンスが遅い**: フレームの解像度を下げるか、処理するフレームを間引いてください\n\n---\n\n**注意**: このデモはローカル環境でのみ実行可能です。Dockerコンテナ内では実行できません。",
-      "summary": "PythonとOpenCV、face_recognitionライブラリを使用した顔認証システムの実装方法と技術的な解説。",
+      "body_markdown": "# Pythonで実装する顔認証システム\n\n顔認証は、画像や動画から人の顔を検出し、個人を識別する技術です。PythonとOpenCV、face_recognitionライブラリを使用することで、顔認証システムを構築できます。実際に金融機関向けプロジェクトで、店舗向けAIカメラシステムの顔認識機能として実装しました。\n\n## 顔認証の技術概要\n\n### 1. 顔検出（Face Detection）\n\n顔検出は、画像や動画フレーム内から顔の位置を特定する処理です。\n\n- **Haar Cascade**: OpenCVに組み込まれている古典的な手法\n- **Dlib HOG**: 方向勾配ヒストグラムを使用した検出方法\n- **Deep Learning**: CNNベースの高精度な検出（MTCNN、RetinaFaceなど）\n\n### 2. 顔特徴抽出（Face Encoding）\n\n検出された顔から、個人を識別するための特徴ベクトルを抽出します。\n\n- **face_recognitionライブラリ**: dlibの深層学習モデルを使用\n- **128次元の特徴ベクトル**: 各顔を128次元の数値ベクトルに変換\n- **距離計算**: ユークリッド距離で顔の類似度を判定\n\n### 3. 顔マッチング（Face Matching）\n\n抽出した特徴ベクトルを既知の顔データベースと比較し、一致する人物を特定します。\n\n## 実装のポイント\n\n### WEBカメラの接続\n\nIPカメラやWEBカメラに接続するには、カメラのストリームURLを指定します。USB カメラ、HTTP ストリーム、RTSP プロトコルに対応しています。\n\n### パフォーマンス最適化\n\n実際の運用では、以下の最適化が重要でした。\n\n- **フレームスキップ**: 全フレームを処理せず、数フレームおきに処理することでCPU負荷を軽減\n- **解像度の調整**: 検出精度を維持しつつ、処理速度を上げるための最適な解像度を検証\n- **マルチスレッド**: 顔検出と特徴抽出を別スレッドで並列処理\n\n### セキュリティとプライバシー\n\n金融機関での導入にあたり、以下を徹底しました。\n\n- **データの暗号化**: 顔特徴ベクトルを暗号化して保存\n- **同意の取得**: 顔認証を使用する前にユーザーの同意を得るフロー\n- **データの最小化**: 必要最小限のデータのみを保存し、定期的にパージ\n\n## 応用: BIダッシュボードとの連携\n\n顔認識で取得した来客属性データ（年齢推定・性別推定）を React + TypeScript + Recharts で構築した BI ダッシュボードに連携し、店舗の来客傾向を可視化しました。インフラエンジニアとしてのバックエンド知識と、フロントエンド開発スキルを組み合わせたプロジェクトです。\n\n## ローカル環境での実行方法\n\n顔認証ライブラリは重いため、本番環境には含まれていません。ローカル環境で実行する場合は、以下の手順に従ってください。\n\n### 必要なライブラリのインストール\n\n```bash\n# macOS\nbrew install cmake\npip install opencv-python face-recognition dlib\n\n# Linux\nsudo apt-get install cmake libopenblas-dev liblapack-dev\npip install opencv-python face-recognition dlib\n```\n\n**注意**: `dlib` のインストールには時間がかかります（10〜20分程度）。\n\n### 実行\n\n```bash\npython face_recognition_demo.py\n```\n\n---\n\n**注意**: このデモはローカル環境でのみ実行可能です。",
+      "summary": "Python + OpenCV + face_recognition による顔認証システムの技術解説。金融機関向けAIカメラプロジェクトでの実装経験をもとに解説。",
       "is_published": true,
       "created_at": "2024-01-15T00:00:00Z",
       "updated_at": "2024-01-15T00:00:00Z",
-      "tags": [1, 3]
+      "tags": [1, 5]
     }
   }
 ]
-
-

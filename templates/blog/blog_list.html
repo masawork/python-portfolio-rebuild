@@ -1,46 +1,47 @@
 {% extends 'base.html' %}
 
-{% block title %}ブログ一覧 - ポートフォリオ{% endblock %}
+{% block title %}Blog — Sakamoto Portfolio{% endblock %}
 
 {% block content %}
-<h1 style="font-size: 2rem; margin-bottom: 2rem;">ブログ一覧</h1>
+<div class="section-label">BLOG</div>
+<h1>技術ブログ</h1>
+<p style="color: var(--text2); margin-bottom: 2rem; max-width: 600px;">
+    インフラ構築・運用自動化・開発で得た知見を共有しています。
+</p>
 
-<form method="get" style="margin-bottom: 2rem;">
-    <input type="text" name="q" value="{{ search_query }}" placeholder="検索..." style="padding: 0.5rem; width: 300px; border: 1px solid #ddd; border-radius: 4px;">
-    <button type="submit" class="btn" style="margin-left: 0.5rem;">検索</button>
-</form>
-
-<div style="margin-bottom: 1rem;">
-    <a href="{% url 'blog_list' %}" style="margin-right: 0.5rem; padding: 0.5rem 1rem; background: {% if not current_tag %}#007bff{% else %}#f0f0f0{% endif %}; color: {% if not current_tag %}white{% else %}#333{% endif %}; text-decoration: none; border-radius: 4px;">すべて</a>
-    {% for tag in tags %}
-    <a href="{% url 'blog_list' %}?tag={{ tag.slug }}" style="margin-right: 0.5rem; padding: 0.5rem 1rem; background: {% if current_tag == tag.slug %}#007bff{% else %}#f0f0f0{% endif %}; color: {% if current_tag == tag.slug %}white{% else %}#333{% endif %}; text-decoration: none; border-radius: 4px;">{{ tag.name }}</a>
-    {% endfor %}
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+    <form method="get" style="display: flex; gap: 0.5rem;">
+        <input type="text" name="q" value="{{ search_query }}" placeholder="キーワード検索..." style="width: 240px;">
+        <button type="submit" class="btn btn-outline">検索</button>
+    </form>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.35rem;">
+        <a href="{% url 'blog_list' %}" class="tag {% if not current_tag %}tag-active{% endif %}" style="text-decoration: none;">すべて</a>
+        {% for tag in tags %}
+        <a href="{% url 'blog_list' %}?tag={{ tag.slug }}" class="tag {% if current_tag == tag.slug %}tag-active{% endif %}" style="text-decoration: none;">{{ tag.name }}</a>
+        {% endfor %}
+    </div>
 </div>
 
-<div style="display: grid; gap: 1.5rem;">
+<div class="grid" style="gap: 1rem;">
     {% for post in posts %}
-    <article style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">
-            <a href="{% url 'blog_detail' post.slug %}" style="color: #333; text-decoration: none;">{{ post.title }}</a>
-        </h2>
-        {% if post.summary %}
-        <p style="color: #666; margin-bottom: 1rem;">{{ post.summary }}</p>
-        {% endif %}
-        <div style="margin-top: 1rem;">
+    <a href="{% url 'blog_detail' post.slug %}" class="card" style="color: inherit; display: block;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 200px;">
+                <h2 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.4rem;">{{ post.title }}</h2>
+                {% if post.summary %}
+                <p style="font-size: 0.85rem; color: var(--text2); line-height: 1.7;">{{ post.summary }}</p>
+                {% endif %}
+            </div>
+            <p style="font-size: 0.75rem; color: var(--muted); white-space: nowrap;">{{ post.created_at|date:"Y.m.d" }}</p>
+        </div>
+        <div style="margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.3rem;">
             {% for tag in post.tags.all %}
-            <span style="display: inline-block; padding: 0.25rem 0.5rem; background: #e8f5e9; color: #2e7d32; border-radius: 4px; font-size: 0.85rem; margin-right: 0.5rem;">{{ tag.name }}</span>
+            <span class="tag">{{ tag.name }}</span>
             {% endfor %}
         </div>
-        <p style="color: #999; font-size: 0.9rem; margin-top: 1rem;">{{ post.created_at|date:"Y年m月d日" }}</p>
-    </article>
+    </a>
     {% empty %}
-    <p>ブログ投稿が見つかりませんでした。</p>
+    <p style="color: var(--muted);">ブログ投稿が見つかりませんでした。</p>
     {% endfor %}
 </div>
 {% endblock %}
-
-
-
-
-
-
